@@ -3,12 +3,14 @@ import * as apis from './js/apis.js';
 
 
 // PRUEBAS:
-// console.log(apis.getPeaksByNameElevation('roca', 1000, 5000));
+apis.getPeaksByNameElevation('roca', 1000, 5000);
 
-// console.log(apis.getLocationData('42.9243179', '-4.6810643'));
+// apis.getLocationData('42.9243179', '-4.6810643');
 
-// console.log(apis.getPhotoByPeakName('Curavacas'));
-// console.log(apis.getPhotoByPeakName('Pagasarri'));
-// console.log(apis.getPhotoByPeakName('K2'));
-// console.log(apis.getPhotoByPeakName('Gorbea'));
+// apis.getPhotoByPeakName('Curavacas', 4);
+// apis.getPhotoByPeakName('Pagasarri', 2);
+// console.log(apis.getPhotoByPeakName('Everest', 4));
+// console.log(apis.getPhotoByPeakName('Gorbea', 4));
 
+// apis.getWeatherForecastByLocation('42.9243179', '-4.6810643');
+// apis.getCurrentWeatherByLocation('42.9243179', '-4.6810643');
