@@ -4,6 +4,7 @@
     -   OpenWeather
     -   Flickr
 */
+import * as more from './more.js';
 
 async function getPeaksByNameElevation(name, altMin, altMax) {
   /* Búsqueda picos por nombre y rango altitud (1k-2k, 2k-3k, ...).
@@ -12,7 +13,7 @@ async function getPeaksByNameElevation(name, altMin, altMax) {
     OVERPASS.DE
     https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak][name~%22Curavacas%22];%20out%20geom;
     */
-  name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  name = more.capitalizeWords(name);
   const urlBase =
     "https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak]";
   const urlPeakName = `[name~%22${name}%22];%20out%20geom;`;
