@@ -12,6 +12,7 @@ async function getPeaksByNameElevation(name, altMin, altMax) {
     OVERPASS.DE
     https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak][name~%22Curavacas%22];%20out%20geom;
     */
+  name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   const urlBase =
     "https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak]";
   const urlPeakName = `[name~%22${name}%22];%20out%20geom;`;
@@ -30,11 +31,9 @@ async function getPeaksByNameElevation(name, altMin, altMax) {
       return altitude >= altMin && altitude <= altMax;
     });
     console.log(filteredPeaks); /*borrar al final del proy.*/
-    /*return filteredPeaks; no es necesario ya que llamamos desde aquí al DOM.*/
-    /*aquí llamaremos a la fn del DOM de resultados búsqueda*/
+    return filteredPeaks;
   } catch (e) {
     console.error(e);
-    alert("Fallo en la llamada de OpenStreetMap.");
   }
 }
 

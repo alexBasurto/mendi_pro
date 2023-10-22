@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MENDI PRO</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <header>
@@ -12,11 +12,33 @@
       <nav></nav>
     </header>
     <main>
+      <form id="peaksSearchEngine">
+        <label for="peakName">Peak Name: </label>
+        <input type="text" id="peakName" placeholder="peak name" />
 
+        <label for="peakElevation">Elevation</label>
+        <select name="peakElevation" id="peakElevation">
+          <option value="0-9000">any altitude</option>
+          <option value="lt1000">below 1.000 meters</option>
+          <option value="1000-2000">1000 to 2000 meters</option>
+          <option value="2000-3000">2000 to 3000 meters</option>
+          <option value="3000-4000">3000 to 4000 meters</option>
+          <option value="4000-5000">4000 to 5000 meters</option>
+          <option value="5000-6000">5000 to 6000 meters</option>
+          <option value="6000-7000">6000 to 7000 meters</option>
+          <option value="7000-8000">7000 to 8000 meters</option>
+          <option value="gt8000">above 8000 meters</option>
+        </select>
+
+        <button type="submit" id="submit">Search Peaks</button>
+        <button type="button" id="clearForm">Refresh</button>
+      </form>
+
+      <section id="mainContainer">
+        <!--aquí va el DOM-->
+      </section>
     </main>
-    <footer>
-
-    </footer>
+    <footer></footer>
     <script type="module" src="./script.js"></script>
   </body>
 </html>
