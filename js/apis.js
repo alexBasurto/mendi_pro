@@ -62,7 +62,8 @@ async function getLocationData(latitude, longitude) {
     return peakData.address;
   } catch (e) {
     console.error(e);
-    alert("Fallo en la llamada a la API de Nominatim.");
+    return false;
+    // alert("Fallo en la llamada a la API de Nominatim.");
   }
 }
 
