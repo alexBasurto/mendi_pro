@@ -32,7 +32,6 @@ async function getPeaksByNameElevation(name, altMin, altMax) {
       return altitudeA - altitudeB;
     });
 
-    console.log(filteredPeaks); /* Borrar al final del proyecto */
     return filteredPeaks;
   } catch (e) {
     console.error(e);
@@ -59,7 +58,6 @@ async function getLocationData(latitude, longitude) {
       throw new Error("Fallo en la llamada a la API de Nominatim.");
     }
     const peakData = await response.json();
-    console.log(peakData.address); /*borrar al final del proy.*/
     /*Esta fn será llamada desde la fn del DOM de resultados búsqueda*/
     return peakData.address;
   } catch (e) {
@@ -114,8 +112,7 @@ async function getCurrentWeatherByLocation(latitude, longitude) {
         throw new Error("Fallo en la llamada a la API de Open Meteo.");
       }
       const currentWeatherObj = await response.json();
-  
-      console.log(currentWeatherObj.current); /*borrar al final del proy.*/
+
       /*Esta fn será llamada desde la fn del DOM de resultados búsqueda*/
       return currentWeatherObj.current;
     } catch (e) {

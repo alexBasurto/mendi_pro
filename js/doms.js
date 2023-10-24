@@ -33,6 +33,7 @@ async function displaySearchResults(peaks) {
             displayRecordDetails(peaks[i], locationData);
         });
         const mountainCardTxt = document.createElement("article");
+        mountainCardTxt.className = "mountainCardTxt";
 
         //añado info de la api principal
         const mountainName = document.createElement("h3");
@@ -329,7 +330,7 @@ async function displayRecordDetails(peak, locationData) {
 
         //día de la semana
         const dayOfWeek = document.createElement("p");
-        dayOfWeek.id = "dayOfWeek";
+        dayOfWeek.className = "dayOfWeek";
         dayOfWeek.innerText = weatherFcObject.time[i];
         dayOfWeekElem.appendChild(dayOfWeek);
 
@@ -528,9 +529,12 @@ async function displayRecordDetails(peak, locationData) {
 
     mainContainer.innerText = "";
     /*añado elementos DOM a mainContainer*/
+    const articleBigCard = document.createElement('article');
+    articleBigCard.className = "mountainBigCard";
     for (let i = 0; i < mountainElements.length; i++) {
-        mainContainer.appendChild(mountainElements[i]);
+        articleBigCard.appendChild(mountainElements[i]);
     }
+    mainContainer.appendChild(articleBigCard);
 
     //añado el mapa
     await maps.getMapByCoordinates(peak.lat, peak.lon);
