@@ -86,7 +86,6 @@ async function getWeatherForecastByLocation(latitude, longitude) {
       }
       const forecastObj = await response.json();
   
-      console.log(forecastObj.daily); /*borrar al final del proy.*/
       /*Esta fn será llamada desde la fn del DOM de resultados búsqueda*/
       return forecastObj.daily;
     } catch (e) {

@@ -9,6 +9,17 @@ body {
     width: 100%;
 }
 
+/*map*/
+#map {
+    height: 500px;
+    width: 500px;
+}
+
+/*weather*/
+/* .weather {
+    font-size: 8px;
+} */
+
 /* LOADING... ANIMATION */
 .loader{
     position: relative;

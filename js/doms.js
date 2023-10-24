@@ -1,5 +1,6 @@
 /*Funciones creación DOM resultados búsqueda y ficha monte.*/
 import * as apis from "./apis.js";
+import * as maps from "./maps.js";
 
 function displayLoadingAnimation() {
     const mainContainer = document.getElementById("mainContainer");
@@ -28,7 +29,7 @@ async function displaySearchResults(peaks) {
     for (let i = 0; i < peaks.length; i++) {
         const mountainCard = document.createElement("article");
         mountainCard.className = "mountainCard";
-        mountainCard.addEventListener("click", function () {
+        mountainCard.addEventListener("click", async function () {
             displayRecordDetails(peaks[i], locationData);
         });
         const mountainCardTxt = document.createElement("article");
@@ -132,7 +133,7 @@ async function displayRecordDetails(peak, locationData) {
     $mountainHeader.appendChild($mountainName);
 
     const $mountainElevation = document.createElement("h2");
-    $mountainElevation.innerText = peak.tags.ele + "msnm";
+    $mountainElevation.innerText = peak.tags.ele + " msnm";
     $mountainHeader.appendChild($mountainElevation);
 
     mountainElements.push($mountainHeader);
@@ -200,8 +201,79 @@ async function displayRecordDetails(peak, locationData) {
     mountainElements.push(imageContainer);
     
     //mapas
+    const mapElement = document.createElement('div');
+    mapElement.id = 'map';
+    mountainElements.push(mapElement);
 
     //pronostico tiempo
+    const weatherFcObject = await apis.getWeatherForecastByLocation(peak.lat, peak.lon);
+    console.log(weatherFcObject);
+    const weatherForecast = document.createElement('section');
+    weatherForecast.className = 'weather';
+
+    for (let i = 0; i < 7; i++) {
+        const dayOfWeekElem = document.createElement('section');
+
+        //día de la semana
+        const dayOfWeek = document.createElement('p');
+        dayOfWeek.innerText = weatherFcObject.time[i];
+        dayOfWeekElem.appendChild(dayOfWeek);
+ 
+        //weather code
+        const weatherCode = document.createElement('p');
+        weatherCode.innerText = weatherFcObject.weathercode[i];
+        dayOfWeekElem.appendChild(weatherCode);
+
+        //temp 2m max
+        const tempMax = document.createElement('p');
+        tempMax.innerText = weatherFcObject.temperature_2m_max[i];
+        dayOfWeekElem.appendChild(tempMax);
+
+        //temp 2m min
+        const tempMin = document.createElement('p');
+        tempMin.innerText = weatherFcObject.temperature_2m_min[i];
+        dayOfWeekElem.appendChild(tempMin);
+
+        //sunrise
+        const sunrise = document.createElement('p');
+        sunrise.innerText = weatherFcObject.sunrise[i];
+        dayOfWeekElem.appendChild(sunrise);
+
+        //sunset
+        const sunset = document.createElement('p');
+        sunset.innerText = weatherFcObject.sunset[i];
+        dayOfWeekElem.appendChild(sunset);
+
+        //uv index max
+        const uvMax = document.createElement('p');
+        uvMax.innerText = weatherFcObject.uv_index_max[i];
+        dayOfWeekElem.appendChild(uvMax);
+
+        //rain_sum
+        const rainSum = document.createElement('p');
+        rainSum.innerText = weatherFcObject.rain_sum[i];
+        dayOfWeekElem.appendChild(rainSum);
+
+        //snowfall_sum
+        const snowSum = document.createElement('p');
+        snowSum.innerText = weatherFcObject.snowfall_sum[i];
+        dayOfWeekElem.appendChild(snowSum);
+
+        //windspeed_10m_max
+        const windspeed = document.createElement('p');
+        windspeed.innerText = weatherFcObject.windspeed_10m_max[i];
+        dayOfWeekElem.appendChild(windspeed);
+        
+        //winddirection_10m_dominant
+        const winddir = document.createElement('p');
+        winddir.innerText = weatherFcObject.winddirection_10m_dominant[i];
+        dayOfWeekElem.appendChild(winddir);
+
+        //añado toda la info del día al contenedor de forecast
+        weatherForecast.appendChild(dayOfWeekElem);
+    }
+
+    mountainElements.push(weatherForecast);
 
     //tiempo actual
 
@@ -210,6 +282,9 @@ async function displayRecordDetails(peak, locationData) {
     for (let i = 0; i < mountainElements.length; i++) {
         mainContainer.appendChild(mountainElements[i]);
     }
+
+    //añado el mapa
+    await maps.getMapByCoordinates(peak.lat, peak.lon);
 }
 
 // Exporta todas las funciones
