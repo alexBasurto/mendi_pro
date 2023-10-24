@@ -191,7 +191,7 @@ async function displayRecordDetails(peak, locationData) {
 
     // añado 5 fotos
     const imageUrl = await apis.getPhotoByPeakName(peak.tags.name, 5);
-    const imageContainer = document.createElement('section');
+    const imageContainer = document.createElement("section");
 
     for (let i = imageUrl.length - 1; i >= 0; i--) {
         const mountainImg = document.createElement("img");
@@ -199,73 +199,231 @@ async function displayRecordDetails(peak, locationData) {
         imageContainer.appendChild(mountainImg);
     }
     mountainElements.push(imageContainer);
-    
+
     //mapas
-    const mapElement = document.createElement('div');
-    mapElement.id = 'map';
+    const mapElement = document.createElement("div");
+    mapElement.id = "map";
     mountainElements.push(mapElement);
 
     //pronostico tiempo
-    const weatherFcObject = await apis.getWeatherForecastByLocation(peak.lat, peak.lon);
-    console.log(weatherFcObject);
-    const weatherForecast = document.createElement('section');
-    weatherForecast.className = 'weather';
+    /*
+    ☁️🌨️⛈️🌩️🌧️⛅🌤️❄️🌦️🌥️🌪️☀️🌞
+    */
+    const weatherFcObject = await apis.getWeatherForecastByLocation(
+        peak.lat,
+        peak.lon
+    );
+
+    const weatherForecast = document.createElement("section");
+    weatherForecast.className = "weatherForecast";
+
+    const weatherFCTitle = document.createElement("h4");
+    weatherFCTitle.innerText = "Weather Forecast For The Next 7 Days";
+    weatherForecast.appendChild(weatherFCTitle);
+
+    const weatherEmojis = {
+        "00": "☀️", // Cloud development not observed or not observable
+        "01": "🌤️", // Clouds generally dissolving or becoming less developed
+        "02": "☁️", // State of sky on the whole unchanged
+        "03": "🌥️", // Clouds generally forming or developing
+        "04": "🌫️", // Visibility reduced by smoke
+        "05": "🌫️", // Haze
+        "06": "🌫️", // Widespread dust in suspension
+        "07": "🌫️", // Dust or sand raised by wind
+        "08": "🌫️", // Well developed dust whirl(s) or sand whirl(s)
+        "09": "🌪️", // Duststorm or sandstorm
+        "10": "🌫️", // Mist
+        "11": "🌫️", // Patches of shallow fog
+        "12": "🌫️", // More or less continuous shallow fog
+        "13": "🌩️", // Lightning visible, no thunder heard
+        "14": "🌦️", // Precipitation within sight, not reaching the ground
+        "15": "🌦️", // Precipitation within sight, reaching the ground, but distant
+        "16": "🌦️", // Precipitation within sight, reaching the ground, near but not at the station
+        "17": "🌩️", // Thunderstorm, but no precipitation
+        "18": "🌪️", // Squalls
+        "19": "🌪️", // Funnel cloud(s)
+        "20": "🌧️", // Drizzle or snow grains
+        "21": "🌧️", // Rain
+        "22": "❄️", // Snow
+        "23": "🌧❄️", // Rain and snow or ice pellets
+        "24": "🌧❄️", // Freezing drizzle or freezing rain
+        "25": "🌧️", // Showers of rain
+        "26": "🌨️", // Showers of snow, or of rain and snow
+        "27": "🌨️", // Showers of hail
+        "28": "🌫️", // Fog or ice fog
+        "29": "🌩️", // Thunderstorm (with or without precipitation)
+        "30": "🌫️", // Slight or moderate duststorm or sandstorm
+        "31": "🌫️", // Slight or moderate duststorm or sandstorm
+        "32": "🌫️", // Severe duststorm or sandstorm
+        "33": "🌫️", // Severe duststorm or sandstorm
+        "34": "🌨️", // Slight or moderate blowing snow
+        "35": "🌨️", // Heavy drifting snow
+        "36": "🌨️", // Slight or moderate blowing snow
+        "37": "🌨️", // Heavy drifting snow
+        "38": "🌨️", // Slight or moderate blowing snow
+        "39": "🌨️", // Heavy drifting snow
+        "40": "🌫️", // Fog or ice fog
+        "41": "🌫️", // Fog or ice fog in patches
+        "42": "🌫️", // Fog or ice fog, sky visible
+        "43": "🌫️", // Fog or ice fog, sky invisible
+        "44": "🌫️", // Fog or ice fog, sky visible
+        "45": "🌫️", // Fog or ice fog, sky invisible
+        "46": "🌫️", // Fog or ice fog, sky visible
+        "47": "🌫️", // Fog or ice fog, sky invisible
+        "48": "🌫️", // Fog, depositing rime, sky visible
+        "49": "🌫️", // Fog, depositing rime, sky invisible
+        "50": "🌧️", // Drizzle
+        "51": "🌧️", // Drizzle
+        "52": "🌧️", // Drizzle
+        "53": "🌧️", // Drizzle
+        "54": "🌨️", // Drizzle
+        "55": "🌨️", // Drizzle
+        "56": "🌨️", // Drizzle
+        "57": "🌨️", // Drizzle
+        "58": "🌧❄️", // Drizzle
+        "59": "🌧❄️", // Drizzle
+        "60": "🌧️", // Rain
+        "61": "🌧️", // Rain
+        "62": "🌧️", // Rain
+        "63": "🌧️", // Rain
+        "64": "❄️", // Rain
+        "65": "❄️", // Rain
+        "66": "❄️", // Rain
+        "67": "🌨️", // Rain
+        "68": "🌨️", // Rain
+        "69": "🌨️", // Rain
+        "70": "❄️", // Intermittent fall of snowflakes
+        "71": "❄️", // Continuous fall of snowflakes
+        "72": "❄️", // Intermittent fall of snowflakes
+        "73": "❄️", // Continuous fall of snowflakes
+        "74": "❄️", // Intermittent fall of snowflakes
+        "75": "❄️", // Continuous fall of snowflakes
+        "76": "❄️", // Diamond dust
+        "77": "❄️", // Snow grains
+        "78": "❄️", // Isolated star-like snow crystals
+        "79": "❄️", // Ice pellets
+        "80": "🌧️", // Rain showers, slight
+        "81": "🌧️", // Rain showers, moderate or heavy
+        "82": "🌧️", // Rain showers, violent
+        "83": "🌧❄️", // Showers of rain and snow mixed, slight
+        "84": "🌧❄️", // Showers of rain and snow mixed, moderate or heavy
+        "85": "❄️", // Snow showers, slight
+        "86": "❄️", // Snow showers, moderate or heavy
+        "87": "🌨️", // Showers of snow pellets or small hail
+        "88": "🌨️", // Showers of snow pellets or small hail
+        "89": "🌨️", // Showers of hail
+        "90": "🌨️", // Showers of hail
+        "91": "🌧️", // Slight rain
+        "92": "🌧️", // Moderate or heavy rain
+        "93": "🌨️", // Slight snow
+        "94": "🌨️", // Moderate or heavy snow
+        "95": "🌩️", // Thunderstorm, slight or moderate, without hail
+        "96": "🌩️", // Thunderstorm, slight or moderate, with hail
+        "97": "🌩️", // Thunderstorm, heavy, without hail
+        "98": "🌩️", // Thunderstorm combined with duststorm or sandstorm
+        "99": "🌩️" // Thunderstorm, heavy, with hail
+      };
 
     for (let i = 0; i < 7; i++) {
-        const dayOfWeekElem = document.createElement('section');
+        const dayOfWeekElem = document.createElement("section");
 
         //día de la semana
-        const dayOfWeek = document.createElement('p');
+        const dayOfWeekTag = document.createElement("p");
+        dayOfWeekTag.innerText = "DOW";
+        dayOfWeekElem.appendChild(dayOfWeekTag);
+
+        const dayOfWeek = document.createElement("p");
         dayOfWeek.innerText = weatherFcObject.time[i];
         dayOfWeekElem.appendChild(dayOfWeek);
- 
+
         //weather code
-        const weatherCode = document.createElement('p');
-        weatherCode.innerText = weatherFcObject.weathercode[i];
+        const weatherCodeTag = document.createElement("p");
+        weatherCodeTag.innerText = "WCODE";
+        dayOfWeekElem.appendChild(weatherCodeTag);
+        
+        const weatherCode = document.createElement("p");
+        weatherCode.className = "weatherCode";
+        weatherCode.innerText = weatherEmojis[weatherFcObject.weathercode[i]];
         dayOfWeekElem.appendChild(weatherCode);
 
         //temp 2m max
-        const tempMax = document.createElement('p');
+        const tempMaxTag = document.createElement("p");
+        tempMaxTag.innerText = "TMAX";
+        dayOfWeekElem.appendChild(tempMaxTag);
+        
+        const tempMax = document.createElement("p");
         tempMax.innerText = weatherFcObject.temperature_2m_max[i];
         dayOfWeekElem.appendChild(tempMax);
 
         //temp 2m min
-        const tempMin = document.createElement('p');
+        const tempMinTag = document.createElement("p");
+        tempMinTag.innerText = "TMIN";
+        dayOfWeekElem.appendChild(tempMinTag);
+        
+        const tempMin = document.createElement("p");
         tempMin.innerText = weatherFcObject.temperature_2m_min[i];
         dayOfWeekElem.appendChild(tempMin);
 
         //sunrise
-        const sunrise = document.createElement('p');
+        const sunriseTag = document.createElement("p");
+        sunriseTag.innerText = "SUNRISE";
+        dayOfWeekElem.appendChild(sunriseTag);
+        
+        const sunrise = document.createElement("p");
         sunrise.innerText = weatherFcObject.sunrise[i];
         dayOfWeekElem.appendChild(sunrise);
 
         //sunset
-        const sunset = document.createElement('p');
+        const sunsetTag = document.createElement("p");
+        sunsetTag.innerText = "SUNSET";
+        dayOfWeekElem.appendChild(sunsetTag);
+        
+        const sunset = document.createElement("p");
         sunset.innerText = weatherFcObject.sunset[i];
         dayOfWeekElem.appendChild(sunset);
 
         //uv index max
-        const uvMax = document.createElement('p');
+        const uvMaxTag = document.createElement("p");
+        uvMaxTag.innerText = "UVMAX";
+        dayOfWeekElem.appendChild(uvMaxTag);
+        
+        const uvMax = document.createElement("p");
         uvMax.innerText = weatherFcObject.uv_index_max[i];
         dayOfWeekElem.appendChild(uvMax);
 
         //rain_sum
-        const rainSum = document.createElement('p');
+        const rainTag = document.createElement("p");
+        rainTag.innerText = "RAIN";
+        dayOfWeekElem.appendChild(rainTag);
+        
+        const rainSum = document.createElement("p");
         rainSum.innerText = weatherFcObject.rain_sum[i];
         dayOfWeekElem.appendChild(rainSum);
 
         //snowfall_sum
-        const snowSum = document.createElement('p');
+        const snowTag = document.createElement("p");
+        snowTag.innerText = "SNOW";
+        dayOfWeekElem.appendChild(snowTag);
+        
+        const snowSum = document.createElement("p");
         snowSum.innerText = weatherFcObject.snowfall_sum[i];
         dayOfWeekElem.appendChild(snowSum);
 
         //windspeed_10m_max
-        const windspeed = document.createElement('p');
+        const windSpeedTag = document.createElement("p");
+        windSpeedTag.innerText = "WIND SPEED";
+        dayOfWeekElem.appendChild(windSpeedTag);
+        
+        const windspeed = document.createElement("p");
         windspeed.innerText = weatherFcObject.windspeed_10m_max[i];
         dayOfWeekElem.appendChild(windspeed);
-        
+
         //winddirection_10m_dominant
-        const winddir = document.createElement('p');
+        const windDirTag = document.createElement("p");
+        windDirTag.innerText = "WIND DIR";
+        dayOfWeekElem.appendChild(windDirTag);
+        
+        const winddir = document.createElement("p");
         winddir.innerText = weatherFcObject.winddirection_10m_dominant[i];
         dayOfWeekElem.appendChild(winddir);
 
@@ -276,6 +434,100 @@ async function displayRecordDetails(peak, locationData) {
     mountainElements.push(weatherForecast);
 
     //tiempo actual
+    const currentWeather = await apis.getCurrentWeatherByLocation(
+        peak.lat,
+        peak.lon
+    );
+    const currentWeatherElem = document.createElement("section");
+    currentWeatherElem.className = "currentWeather";
+
+    const currWeatherTitle = document.createElement("h4");
+    currWeatherTitle.innerText = "Current Weather";
+    currentWeatherElem.appendChild(currWeatherTitle);
+
+    //temperature_2m
+    const currTempTag = document.createElement("p");
+    currTempTag.innerText = "TEMP";
+    currentWeatherElem.appendChild(currTempTag);
+        
+    const currTemp = document.createElement("p");
+    currTemp.innerText = currentWeather.temperature_2m;
+    currentWeatherElem.appendChild(currTemp);
+    //relativehumidity_2m
+    const currRelHumidityTag = document.createElement("p");
+    currRelHumidityTag.innerText = "REL.HUM.";
+    currentWeatherElem.appendChild(currRelHumidityTag);
+        
+    const currRelHumidity = document.createElement("p");
+    currRelHumidity.innerText = currentWeather.relativehumidity_2m;
+    currentWeatherElem.appendChild(currRelHumidity);
+    //apparent_temperature
+    const currApparentTempTag = document.createElement("p");
+    currApparentTempTag.innerText = "APP.TEMP";
+    currentWeatherElem.appendChild(currApparentTempTag);
+        
+    const currApparentTemp = document.createElement("p");
+    currApparentTemp.innerText = currentWeather.apparent_temperature;
+    currentWeatherElem.appendChild(currApparentTemp);
+    //is_day
+    const currIsDayTag = document.createElement("p");
+    currIsDayTag.innerText = "DAY/NIGHT";
+    currentWeatherElem.appendChild(currIsDayTag);
+        
+    const currIsDay = document.createElement("p");
+    currIsDay.innerText = currentWeather.is_day;
+    currentWeatherElem.appendChild(currIsDay);
+    //rain
+    const currRainTag = document.createElement("p");
+    currRainTag.innerText = "RAIN";
+    currentWeatherElem.appendChild(currRainTag);
+        
+    const currRain = document.createElement("p");
+    currRain.innerText = currentWeather.rain;
+    currentWeatherElem.appendChild(currRain);
+    //snowfall
+    const currSnowfallTag = document.createElement("p");
+    currSnowfallTag.innerText = "SNOW";
+    currentWeatherElem.appendChild(currSnowfallTag);
+        
+    const currSnowfall = document.createElement("p");
+    currSnowfall.innerText = currentWeather.snowfall;
+    currentWeatherElem.appendChild(currSnowfall);
+    //weathercode
+    const currWeatherCodeTag = document.createElement("p");
+    currWeatherCodeTag.innerText = "WCODE";
+    currentWeatherElem.appendChild(currWeatherCodeTag);
+        
+    const currWeatherCode = document.createElement("p");
+    currWeatherCode.className = "weatherCode";
+    currWeatherCode.innerText = weatherEmojis[currentWeather.weathercode];
+    currentWeatherElem.appendChild(currWeatherCode);
+    //cloudcover
+    const cloudCoverTag = document.createElement("p");
+    cloudCoverTag.innerText = "CLOUDY";
+    currentWeatherElem.appendChild(cloudCoverTag);
+        
+    const cloudCover = document.createElement("p");
+    cloudCover.innerText = currentWeather.cloudcover;
+    currentWeatherElem.appendChild(cloudCover);
+    //windspeed_10m
+    const currWindSpeedTag = document.createElement("p");
+    currWindSpeedTag.innerText = "WSPEED";
+    currentWeatherElem.appendChild(currWindSpeedTag);
+        
+    const currWindSpeed = document.createElement("p");
+    currWindSpeed.innerText = currentWeather.windspeed_10m;
+    currentWeatherElem.appendChild(currWindSpeed);
+    //winddirection_10m
+    const currWindDirectionTag = document.createElement("p");
+    currWindDirectionTag.innerText = "WDIR";
+    currentWeatherElem.appendChild(currWindDirectionTag);
+        
+    const currWindDirection = document.createElement("p");
+    currWindDirection.innerText = currentWeather.winddirection_10m;
+    currentWeatherElem.appendChild(currWindDirection);
+
+    mountainElements.push(currentWeatherElem);
 
     mainContainer.innerText = "";
     /*añado elementos DOM a mainContainer*/
