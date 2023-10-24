@@ -7,12 +7,6 @@
 import * as more from './more.js';
 
 async function getPeaksByNameElevation(name, altMin, altMax) {
-  /* Búsqueda picos por nombre y rango altitud (1k-2k, 2k-3k, ...).
-    Limitar a 20 resultados.
-    Crear una lista de areas para poner en desplegable formulario.
-    OVERPASS.DE
-    https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak][name~%22Curavacas%22];%20out%20geom;
-    */
   name = more.capitalizeWords(name);
   const urlBase =
     "https://overpass-api.de/api/interpreter?data=[out:json];node[natural=peak]";
@@ -26,17 +20,25 @@ async function getPeaksByNameElevation(name, altMin, altMax) {
     }
     const peaks = await response.json();
 
-    // Filtrar los resultados por altitud
     const filteredPeaks = peaks.elements.filter((peak) => {
       const altitude = parseFloat(peak.tags.ele);
       return altitude >= altMin && altitude <= altMax;
     });
-    console.log(filteredPeaks); /*borrar al final del proy.*/
+
+    // Ordenar los resultados por altitud de mayor a menor
+    filteredPeaks.sort((a, b) => {
+      const altitudeA = parseFloat(a.tags.ele);
+      const altitudeB = parseFloat(b.tags.ele);
+      return altitudeA - altitudeB;
+    });
+
+    console.log(filteredPeaks); /* Borrar al final del proyecto */
     return filteredPeaks;
   } catch (e) {
     console.error(e);
   }
 }
+
 
 async function getLocationData(latitude, longitude) {
   /*

@@ -16,9 +16,9 @@ body {
 }
 
 /*weather*/
-/* .weather {
+.weatherForecast, .currentWeather {
     font-size: 8px;
-} */
+}
 
 /* LOADING... ANIMATION */
 .loader{
