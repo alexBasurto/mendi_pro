@@ -1,51 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MENDI PRO</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./styles/normalize801.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-  </head>
-  <body>
-    <header>
-      <h1>MENDI PRO</h1>
-      <nav></nav>
-    </header>
-    <main>
-      <form id="peaksSearchEngine">
-        <label for="peakName">Peak Name: </label>
-        <input type="text" id="peakName" placeholder="peak name" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MENDI PRO</title>
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./styles/normalize801.css" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+        />
+        <link
+            rel="shortcut icon"
+            href="./assets/favicon_mt_bn_s.png"
+            type="image/x-icon"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Paytone+One&family=Play:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <img
+                id="iconoHeader"
+                src="./assets/favicon_mt_bn_l_cut.png"
+                alt=""
+            />
+            <h1>Mendi Pro</h1>
+        </header>
+        <main>
+            <form id="peaksSearchEngine">
+                <label for="peakName">Peak Name</label>
+                <input type="text" id="peakName" placeholder="peak name" />
 
-        <label for="peakElevation">Elevation</label>
-        <select name="peakElevation" id="peakElevation">
-          <option value="0-9000">any altitude</option>
-          <option value="lt1000">below 1.000 meters</option>
-          <option value="1000-2000">1000 to 2000 meters</option>
-          <option value="2000-3000">2000 to 3000 meters</option>
-          <option value="3000-4000">3000 to 4000 meters</option>
-          <option value="4000-5000">4000 to 5000 meters</option>
-          <option value="5000-6000">5000 to 6000 meters</option>
-          <option value="6000-7000">6000 to 7000 meters</option>
-          <option value="7000-8000">7000 to 8000 meters</option>
-          <option value="gt8000">above 8000 meters</option>
-        </select>
+                <label for="peakElevation">Elevation</label>
+                <select name="peakElevation" id="peakElevation">
+                    <option value="0-9000">any altitude</option>
+                    <option value="lt1000">below 1.000 meters</option>
+                    <option value="1000-2000">1000 to 2000 meters</option>
+                    <option value="2000-3000">2000 to 3000 meters</option>
+                    <option value="3000-4000">3000 to 4000 meters</option>
+                    <option value="4000-5000">4000 to 5000 meters</option>
+                    <option value="5000-6000">5000 to 6000 meters</option>
+                    <option value="6000-7000">6000 to 7000 meters</option>
+                    <option value="7000-8000">7000 to 8000 meters</option>
+                    <option value="gt8000">above 8000 meters</option>
+                </select>
 
-        <button type="submit" id="submit">Search Peaks</button>
-        <button type="button" id="clearForm">Refresh</button>
-      </form>
+                <button type="submit" id="submit">Search Peaks</button>
+                <button type="button" id="clearForm">Refresh</button>
+            </form>
 
-      <section id="mainContainer">
-        <!--aquí va el DOM-->
-      </section>
-    </main>
-    <footer></footer>
-    <script type="module" src="./script.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-  </body>
+            <section id="mainContainer">
+                <!--aquí va el DOM-->
+            </section>
+        </main>
+        <footer></footer>
+        <script type="module" src="./script.js"></script>
+        <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""
+        ></script>
+    </body>
 </html>

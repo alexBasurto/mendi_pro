@@ -3,8 +3,8 @@ import * as apis from './js/apis.js';
 import * as doms from './js/doms.js';
 
 const peakSearchForm = document.getElementById('peaksSearchEngine');
+const refreshButton = document.getElementById('clearForm');
 const mainContainer = document.getElementById('mainContainer');
-
 
 peakSearchForm.addEventListener('submit', function (event) {
     event.preventDefault();    
@@ -42,6 +42,9 @@ peakSearchForm.addEventListener('submit', function (event) {
         
   });
 
+  refreshButton.addEventListener('click', function (event) {
+    mainContainer.innerHTML = '';
+  });
 
 // PRUEBAS:
 // apis.getPeaksByNameElevation('Pagasarri', 0, 5000);

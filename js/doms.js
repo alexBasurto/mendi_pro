@@ -328,11 +328,8 @@ async function displayRecordDetails(peak, locationData) {
         const dayOfWeekElem = document.createElement("section");
 
         //día de la semana
-        const dayOfWeekTag = document.createElement("p");
-        dayOfWeekTag.innerText = "DOW";
-        dayOfWeekElem.appendChild(dayOfWeekTag);
-
         const dayOfWeek = document.createElement("p");
+        dayOfWeek.id = "dayOfWeek";
         dayOfWeek.innerText = weatherFcObject.time[i];
         dayOfWeekElem.appendChild(dayOfWeek);
 
