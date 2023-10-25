@@ -217,8 +217,11 @@ form#peaksSearchEngine > button {
     width: 100%;
 }
 
-.weatherCode {
+.weatherForecast > section > p.weatherCode, .currentWeather > p.weatherCode {
     font-size: 30px;
+    width: 100%;
+    display: block;
+    text-align: center;
 }
 
 /*footer*/
