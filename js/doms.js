@@ -146,16 +146,16 @@ async function displayRecordDetails(peak, locationData) {
     $favSection.className = "favSection";
     const $favIcon = document.createElement('img');
     if (favs.isFav(peak.id)) {
-        $favIcon.setAttribute("src", "../assets/fav.png");
+        $favIcon.setAttribute("src", "./assets/fav.png");
     } else {
-        $favIcon.setAttribute("src", "../assets/nofav.png");
+        $favIcon.setAttribute("src", "./assets/nofav.png");
     };
     $favIcon.addEventListener('click', () => {
         const currentSrc = $favIcon.getAttribute('src');
         if (currentSrc === '../assets/fav.png') {
-          $favIcon.setAttribute("src", "../assets/nofav.png");
+          $favIcon.setAttribute("src", "./assets/nofav.png");
         } else if (currentSrc === '../assets/nofav.png') {
-          $favIcon.setAttribute("src", "../assets/fav.png");
+          $favIcon.setAttribute("src", "./assets/fav.png");
         };
         favs.addOrRemoveFavs(peak.id);
     });
