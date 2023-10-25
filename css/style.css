@@ -32,6 +32,7 @@ form#peaksSearchEngine {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    background-color: #ababab;
 }
 
 form#peaksSearchEngine > label, form#peaksSearchEngine > input, form#peaksSearchEngine > select {
@@ -40,8 +41,10 @@ form#peaksSearchEngine > label, form#peaksSearchEngine > input, form#peaksSearch
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     font-weight: bold;
     font-size: 18px;
+    background-color: #ababab;
 }
 
 form#peaksSearchEngine > button {
@@ -50,11 +53,14 @@ form#peaksSearchEngine > button {
     height: 30px;
     font-weight: bold;
     font-size: 18px;
+    background-color: #000;
+    color: #FFA500;
 }
 
 /*Main*/
 #mainContainer {
-    min-height: 466px;
+    /* min-height: 466px; */
+    min-height: calc(100vh - 180px);
     background-color: #ababab;
 }
 /*map*/
