@@ -164,6 +164,7 @@ async function displayRecordDetails(peak, locationData) {
 
     //información adicional Peak
     const $mountainText = document.createElement("section");
+    $mountainText.className = "mountainText";
     const mountainLat = document.createElement("p");
     mountainLat.innerText = "Latitude: " + peak.lat;
     $mountainText.appendChild(mountainLat);
@@ -213,9 +214,15 @@ async function displayRecordDetails(peak, locationData) {
 
     mountainElements.push($mountainText);
 
+    //mapas
+    const mapElement = document.createElement("div");
+    mapElement.id = "map";
+    mountainElements.push(mapElement);
+
     // añado 5 fotos
-    const imageUrl = await apis.getPhotoByPeakName(peak.tags.name, 5);
+    const imageUrl = await apis.getPhotoByPeakName(peak.tags.name, 4);
     const imageContainer = document.createElement("section");
+    imageContainer.className = "apartadoFotos";
 
     for (let i = imageUrl.length - 1; i >= 0; i--) {
         const mountainImg = document.createElement("img");
@@ -223,11 +230,6 @@ async function displayRecordDetails(peak, locationData) {
         imageContainer.appendChild(mountainImg);
     }
     mountainElements.push(imageContainer);
-
-    //mapas
-    const mapElement = document.createElement("div");
-    mapElement.id = "map";
-    mountainElements.push(mapElement);
 
     //pronostico tiempo
     /*

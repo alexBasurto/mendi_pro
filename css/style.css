@@ -2,7 +2,7 @@
 * {
     margin: 0 auto;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -24,7 +24,7 @@ header {
 
 header > h1 {
     display: inline;
-    font-family: 'Play', sans-serif;
+    font-family: "Play", sans-serif;
 }
 
 /*Formulario búsqueda*/
@@ -35,7 +35,9 @@ form#peaksSearchEngine {
     background-color: #ababab;
 }
 
-form#peaksSearchEngine > label, form#peaksSearchEngine > input, form#peaksSearchEngine > select {
+form#peaksSearchEngine > label,
+form#peaksSearchEngine > input,
+form#peaksSearchEngine > select {
     width: 50%;
     height: 30px;
     display: flex;
@@ -54,7 +56,7 @@ form#peaksSearchEngine > button {
     font-weight: bold;
     font-size: 18px;
     background-color: #000;
-    color: #FFA500;
+    color: #ffa500;
 }
 
 /*Main*/
@@ -80,31 +82,32 @@ form#peaksSearchEngine > button {
     top: 100px;
 }
 
-.lodader, .loader h2 {
-    font-family: 'Montserrat', sans-serif;
+.lodader,
+.loader h2 {
+    font-family: "Montserrat", sans-serif;
     font-size: 30px;
     font-weight: 500;
     color: #000;
     font-weight: bold;
-    text-shadow: 1px 1px 2px #FFA500;
+    text-shadow: 1px 1px 2px #ffa500;
     z-index: 1;
 }
 
 .loader span:nth-child(1) {
     border-radius: 34% 66% 65% 35% / 35% 32% 68% 65%;
-    box-shadow: 3px 3px 3px #FFA500;
+    box-shadow: 3px 3px 3px #ffa500;
 }
 
 .loader span:nth-child(2) {
     animation-direction: reverse;
     border-radius: 44% 56% 34% 66% / 68% 61% 39% 32%;
-    box-shadow: 3px 3px 3px #FFA500;
+    box-shadow: 3px 3px 3px #ffa500;
 }
 
 .loader span:nth-child(3) {
     animation-duration: 1s;
     border-radius: 75% 25% 65% 35% / 68% 73% 27% 32%;
-    box-shadow: 3px 3px 3px #FFA500;
+    box-shadow: 3px 3px 3px #ffa500;
 }
 
 .loader span {
@@ -116,7 +119,7 @@ form#peaksSearchEngine > button {
     border: 2px solid #000;
     pointer-events: none;
     animation: animate 0.2s linear infinite;
-    background-color: #FFD700;
+    background-color: #ffd700;
     opacity: 0.2;
 }
 
@@ -142,11 +145,12 @@ form#peaksSearchEngine > button {
     padding-bottom: 15px;
 }
 
-.mountainCardTxt > h3, .mountainCardTxt > p {
+.mountainCardTxt > h3,
+.mountainCardTxt > p {
     padding-left: 10px;
 }
 
-.mountainCard>img {
+.mountainCard > img {
     width: 100%;
 }
 
@@ -158,13 +162,14 @@ form#peaksSearchEngine > button {
     flex-wrap: wrap;
 }
 
-.mountainBigCard>section {
+.mountainBigCard > section {
     width: 100%;
     padding-top: 10px;
     padding-bottom: 15px;
 }
 
-.mountainBigCard h2, .mountainBigCard p {
+.mountainBigCard h2,
+.mountainBigCard p {
     padding-left: 10px;
 }
 
@@ -172,15 +177,16 @@ form#peaksSearchEngine > button {
     width: 100%;
 }
 
-.mountainBigCard>.favSection, .mountainBigCard>.mountainHeader {
+.mountainBigCard > .favSection,
+.mountainBigCard > .mountainHeader {
     width: 50%;
 }
 
-.mountainBigCard>.favSection {
+.mountainBigCard > .favSection {
     text-align: center;
 }
 
-.mountainBigCard>.favSection>img {
+.mountainBigCard > .favSection > img {
     height: 40px;
     width: 40px;
 }
@@ -193,7 +199,7 @@ form#peaksSearchEngine > button {
 }
 
 .currentWeather > h4 {
-    background-color: #FFA500;
+    background-color: #ffa500;
     font-size: 16px;
     display: block;
     width: 100%;
@@ -212,7 +218,7 @@ form#peaksSearchEngine > button {
 }
 
 .weatherForecast > h4 {
-    background-color: #FFA500;
+    background-color: #ffa500;
     font-size: 16px;
     display: block;
     width: 100%;
@@ -232,11 +238,12 @@ form#peaksSearchEngine > button {
 }
 
 .weatherForecast > section > p.dayOfWeek {
-    background-color: #FFD700;
+    background-color: #ffd700;
     width: 100%;
 }
 
-.weatherForecast > section > p.weatherCode, .currentWeather > p.weatherCode {
+.weatherForecast > section > p.weatherCode,
+.currentWeather > p.weatherCode {
     font-size: 30px;
     width: 100%;
     display: block;
@@ -249,10 +256,10 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFA500;
+    background-color: #ffa500;
     height: 50px;
 }
-footer>p {
+footer > p {
     display: block;
 }
 
@@ -268,12 +275,99 @@ previo: moviles inferior 375px (tamaño M)
 2º MQ: tablets
 */
 @media only screen and (min-width: 768px) {
+    /* La gente del monte no usa tablets */
 }
 
 /*
 3º MQ: desktop
 */
 @media only screen and (min-width: 1280px) {
+    /* Formularios */
+    form#peaksSearchEngine > label,
+    form#peaksSearchEngine > input,
+    form#peaksSearchEngine > select {
+        width: 12%;
+    }
+
+    form#peaksSearchEngine > button {
+        width: 12%;
+    }
+
+    #mainContainer {
+        /* min-height: 466px; */
+        min-height: calc(100vh - 120px);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    /*Resultados búsqueda */
+    .mountainCard {
+        height: 100%;
+        width: 20%;
+        margin: 15px 2.5% 0 2.5%;
+        display: flex;
+        flex-direction: column;
+        background-color: #969696;
+        border-radius: 20px;
+    }
+
+    .mountainCard > img {   
+        border-radius: 0 0 20px 20px;
+    }
+
+    /*Ficha monte*/
+    .mountainBigCard {
+        margin-top: 25px;
+        width: 80%;
+        background-color: #969696;
+        border-radius: 20px;
+    }
+
+    .mountainBigCard>.mountainText {
+        width: 50%;
+    }
+
+    #map {
+        width: 50%;
+    }
+
+    .mountainBigCard h2 {
+        font-size: 40px;
+    }
+
+    .mountainBigCard p {
+        font-size: 30px;
+    }
+
+    .mountainBigCard img {
+        width: 34%;
+        border-radius: 20px;
+    }
+
+    .apartadoFotos {
+        display: flex;
+        flex: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mountainBigCard > .favSection,
+    .mountainBigCard > .mountainHeader {
+        width: 50%;
+    }
+
+    .mountainBigCard > .favSection {
+        text-align: center;
+    }
+
+    .mountainBigCard > .favSection > img {
+        height: 40px;
+        width: 40px;
+        border-radius: 0;
+    }
+
     /*weather*/
     .currentWeather {
         display: flex;
@@ -284,6 +378,14 @@ previo: moviles inferior 375px (tamaño M)
     .currentWeather > h4 {
         display: block;
         width: 100%;
+    }
+
+    .weatherForecast>section>p, .currentWeather>p {
+        font-size: 12px;
+        padding: 0;
+        border-left: 1px solid #373737;
+        text-indent: 5px;
+        background-color: #969696;
     }
 
     .currentWeather > p {
