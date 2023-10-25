@@ -221,15 +221,18 @@ async function displayRecordDetails(peak, locationData) {
 
     // añado 5 fotos
     const imageUrl = await apis.getPhotoByPeakName(peak.tags.name, 4);
-    const imageContainer = document.createElement("section");
-    imageContainer.className = "apartadoFotos";
+    const imagesContainer = document.createElement("section");
+    imagesContainer.className = "apartadoFotos";
 
     for (let i = imageUrl.length - 1; i >= 0; i--) {
+        const imageContainer = document.createElement("section");
+        imageContainer.className = "imageContainer";
         const mountainImg = document.createElement("img");
         mountainImg.setAttribute("src", imageUrl[i]);
         imageContainer.appendChild(mountainImg);
+        imagesContainer.appendChild(imageContainer);
     }
-    mountainElements.push(imageContainer);
+    mountainElements.push(imagesContainer);
 
     //pronostico tiempo
     /*
