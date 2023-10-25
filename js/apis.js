@@ -156,7 +156,6 @@ async function getPhotoByPeakName(peak, quantity) {
       urls.push(photoUrl);
     }
 
-    console.log(urls); /*borrar al final del proy.*/
     /*Esta fn será llamada desde la fn del DOM de resultados búsqueda*/
     return urls;
   } catch (e) {

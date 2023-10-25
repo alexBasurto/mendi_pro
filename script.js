@@ -45,16 +45,3 @@ peakSearchForm.addEventListener('submit', function (event) {
   refreshButton.addEventListener('click', function (event) {
     mainContainer.innerHTML = '';
   });
-
-// PRUEBAS:
-// apis.getPeaksByNameElevation('Pagasarri', 0, 5000);
-
-// apis.getLocationData('42.9243179', '-4.6810643');
-
-// apis.getPhotoByPeakName('Curavacas', 4);
-// apis.getPhotoByPeakName('Pagasarri', 2);
-// console.log(apis.getPhotoByPeakName('Everest', 4));
-// console.log(apis.getPhotoByPeakName('Gorbea', 4));
-
-// apis.getWeatherForecastByLocation('42.9243179', '-4.6810643');
-// apis.getCurrentWeatherByLocation('42.9243179', '-4.6810643');
