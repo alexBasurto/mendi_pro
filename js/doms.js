@@ -152,9 +152,9 @@ async function displayRecordDetails(peak, locationData) {
     };
     $favIcon.addEventListener('click', () => {
         const currentSrc = $favIcon.getAttribute('src');
-        if (currentSrc === '../assets/fav.png') {
+        if (currentSrc === './assets/fav.png') {
           $favIcon.setAttribute("src", "./assets/nofav.png");
-        } else if (currentSrc === '../assets/nofav.png') {
+        } else if (currentSrc === './assets/nofav.png') {
           $favIcon.setAttribute("src", "./assets/fav.png");
         };
         favs.addOrRemoveFavs(peak.id);
