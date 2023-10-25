@@ -1,6 +1,7 @@
 /*Funciones creación DOM resultados búsqueda y ficha monte.*/
 import * as apis from "./apis.js";
 import * as maps from "./maps.js";
+import * as favs from "./favs.js";
 
 function displayLoadingAnimation() {
     const mainContainer = document.getElementById("mainContainer");
@@ -129,6 +130,7 @@ async function displayRecordDetails(peak, locationData) {
 
     //nombre y altitud
     const $mountainHeader = document.createElement("section");
+    $mountainHeader.className = "mountainHeader";
     const $mountainName = document.createElement("h2");
     $mountainName.innerText = peak.tags.name;
     $mountainHeader.appendChild($mountainName);
@@ -138,6 +140,27 @@ async function displayRecordDetails(peak, locationData) {
     $mountainHeader.appendChild($mountainElevation);
 
     mountainElements.push($mountainHeader);
+
+    // botón favoritos
+    const $favSection = document.createElement('section');
+    $favSection.className = "favSection";
+    const $favIcon = document.createElement('img');
+    if (favs.isFav(peak.id)) {
+        $favIcon.setAttribute("src", "../assets/fav.png");
+    } else {
+        $favIcon.setAttribute("src", "../assets/nofav.png");
+    };
+    $favIcon.addEventListener('click', () => {
+        const currentSrc = $favIcon.getAttribute('src');
+        if (currentSrc === '../assets/fav.png') {
+          $favIcon.setAttribute("src", "../assets/nofav.png");
+        } else if (currentSrc === '../assets/nofav.png') {
+          $favIcon.setAttribute("src", "../assets/fav.png");
+        };
+        favs.addOrRemoveFavs(peak.id);
+    });
+    $favSection.appendChild($favIcon);
+    mountainElements.push($favSection);
 
     //información adicional Peak
     const $mountainText = document.createElement("section");

@@ -154,7 +154,8 @@ form#peaksSearchEngine > button {
 .mountainBigCard {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .mountainBigCard>section {
@@ -171,6 +172,18 @@ form#peaksSearchEngine > button {
     width: 100%;
 }
 
+.mountainBigCard>.favSection, .mountainBigCard>.mountainHeader {
+    width: 50%;
+}
+
+.mountainBigCard>.favSection {
+    text-align: center;
+}
+
+.mountainBigCard>.favSection>img {
+    height: 40px;
+    width: 40px;
+}
 
 /*weather*/
 .currentWeather {
