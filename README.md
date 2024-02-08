@@ -1,7 +1,9 @@
 ## MENDI PRO
+![Capturas de webApp MendiPro](./doc/mendipro_shots.png)
 25 de octubre de 2023, 19:58.
+Página desplegada en GitHub Pages: [MendiPro](https://alexbasurto.github.io/mendi_pro/)
 
-Página web de consulta de cimas a nivel mundial: búsqueda por nombre de la cima y por altura de la misma.
+WebApp de consulta de cimas a nivel mundial: búsqueda por nombre de la cima y por altura de la misma.
 
 La página ofrece una serie de resultados coincidentes con los criterios de búsqueda, con la siguiente información por registro:
 - nombre de la cima
@@ -16,32 +18,26 @@ Si entramos en uno de los resultados, la información es ampliada:
 - Pronostico detallado del tiempo para los próximos 7 días
 - Climatología actual
 
-## Requisitos del proyecto
+## Requisitos mínimos del proyecto
 
-- Empleo de HTML, CSS y JS.
+- Empleo de HTML y CSS plano, y JS Vanilla.
 - JS: empleo del DOM.
 - Llamada a una API.
 
 ## APIs empleadas
 - OverPassApi.de (OpenStreetMap):
-
-> Búsqueda de cimas.
-
-> Detalle de cima.
+    - Búsqueda de cimas.
+    - Detalle de cima.
 
 - Nominatim (OpenStreetMap):
-
-> Info de la ubicación (municipio, región...).
+    - Info de la ubicación (municipio, región...).
 
 - Flickr:
-
-> Carga de imágenes a partir del nombre de la cima.
+    - Carga de imágenes a partir del nombre de la cima.
 
 - Open-Meteo.com
-
-> Pronóstico próximos 7 días.
-
-> Tiempo actual.
+    - Pronóstico próximos 7 días.
+    - Tiempo actual.
 
 ## Librerías utilizadas
 
